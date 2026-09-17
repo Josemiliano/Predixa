@@ -1,14 +1,5 @@
 # Predixa México — sitio
 
-Sitio estático de una sola página. No necesita build ni dependencias.
-
-## Publicar en GitHub Pages
-
-1. Crea un repo (por ejemplo `predixa-site`) y sube `index.html`, `styles.css` y este README.
-2. En el repo: Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, carpeta `/ (root)` → Save.
-3. En un minuto queda en `https://<usuario>.github.io/predixa-site/`.
-4. Si compran dominio, agréguenlo en esa misma pantalla de Pages y GitHub crea el archivo `CNAME`.
-
 ## Pendientes antes de lanzar
 
 - **Correos de la lista de espera:** el formulario apunta a Formspree. Creen una cuenta gratis en formspree.io,
