@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Predixa — El mercado de predicciones hecho para México</title>
+  <meta name="description" content="Compra y vende posiciones sobre lo que va a pasar en México: fútbol, elecciones, entretenimiento y el peso. El precio lo pone la gente, no una casa de apuestas.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A3D2A'/%3E%3Cpath d='M9 23 L14 15 L18 19 L23 9' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="wordmark" href="#inicio" aria-label="Predixa, inicio">
+    <svg class="wordmark-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6"/><path d="M9 23 L14 15 L18 19 L23 9"/></svg>
+    Predixa
+  </a>
+  <nav class="topnav" aria-label="Principal">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#mercados">Mercados</a>
+    <a href="#preguntas">Preguntas</a>
+  </nav>
+  <a class="btn btn-small" href="#lista">Anotarme</a>
+</header>
+
+<main id="inicio">
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Tú ya lo sabías.<br>Ahora que cuente.</h1>
+      <p class="hero-lead">Predixa es el primer mercado de predicciones hecho para México. Compra y vende posiciones sobre lo que va a pasar: el próximo partido de la Selección, quién sale del reality, dónde cierra el dólar. El precio lo pone la gente, no una casa de apuestas.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#lista">Anotarme a la lista de espera</a>
+        <a class="btn btn-ghost" href="#como-funciona">Ver cómo funciona</a>
+      </div>
+      <p class="hero-note">Próximamente en iOS y Android. Solo para mayores de edad.</p>
+    </div>
+
+    <article class="market" aria-label="Ejemplo de un mercado en Predixa">
+      <div class="market-head">
+        <span class="market-tag">Selección Mexicana</span>
+        <span class="market-live"><i></i>Mercado abierto</span>
+      </div>
+      <h2 class="market-q">¿Gana México su próximo partido de eliminatoria?</h2>
+      <div class="market-prob">
+        <strong id="prob">65%</strong>
+        <span>de probabilidad según el mercado</span>
+      </div>
+      <svg class="spark" viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#0E6B47" stop-opacity=".22"/>
+            <stop offset="1" stop-color="#0E6B47" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="spark-fill" d="M0,62 L20,58 L40,64 L60,55 L80,57 L100,48 L120,52 L140,44 L160,47 L180,38 L200,42 L220,35 L240,37 L260,31 L280,34 L300,28 L320,30 L320,90 L0,90 Z" fill="url(#fill)"/>
+        <path class="spark-line" d="M0,62 L20,58 L40,64 L60,55 L80,57 L100,48 L120,52 L140,44 L160,47 L180,38 L200,42 L220,35 L240,37 L260,31 L280,34 L300,28 L320,30"/>
+      </svg>
+      <div class="market-buttons">
+        <button type="button" class="side side-si" aria-label="Comprar Sí a seis pesos con cincuenta centavos">
+          <span>Sí</span><b id="px-si">$6.50</b>
+        </button>
+        <button type="button" class="side side-no" aria-label="Comprar No a tres pesos con cincuenta centavos">
+          <span>No</span><b id="px-no">$3.50</b>
+        </button>
+      </div>
+      <dl class="market-meta">
+        <div><dt>Cierra</dt><dd>14 de octubre, 8:00 pm</dd></div>
+        <div><dt>Se resuelve con</dt><dd>Resultado oficial de la FMF</dd></div>
+        <div><dt>Paga</dt><dd>$10 por contrato si aciertas</dd></div>
+      </dl>
+    </article>
+  </section>
+
+  <div class="ticker" aria-label="Más ejemplos de mercados">
+    <div class="ticker-track">
+      <span>¿Cierra el dólar debajo de $18.50 el 31 de diciembre? <b class="si">Sí 42%</b></span>
+      <span>¿Gana el América el Apertura 2026? <b class="si">Sí 31%</b></span>
+      <span>¿Sale la participante más votada este domingo? <b class="no">No 58%</b></span>
+      <span>¿Sube Banxico la tasa en su próxima reunión? <b class="no">No 71%</b></span>
+      <span>¿Gana Rayados el Clásico Regio? <b class="si">Sí 47%</b></span>
+      <span>¿Hay más de 2.5 goles en el Clásico Nacional? <b class="si">Sí 55%</b></span>
+      <span>¿Gana una película mexicana el Óscar a mejor película internacional? <b class="si">Sí 12%</b></span>
+      <span>¿Cierra el dólar debajo de $18.50 el 31 de diciembre? <b class="si">Sí 42%</b></span>
+      <span>¿Gana el América el Apertura 2026? <b class="si">Sí 31%</b></span>
+      <span>¿Sale la participante más votada este domingo? <b class="no">No 58%</b></span>
+      <span>¿Sube Banxico la tasa en su próxima reunión? <b class="no">No 71%</b></span>
+      <span>¿Gana Rayados el Clásico Regio? <b class="si">Sí 47%</b></span>
+      <span>¿Hay más de 2.5 goles en el Clásico Nacional? <b class="si">Sí 55%</b></span>
+      <span>¿Gana una película mexicana el Óscar a mejor película internacional? <b class="si">Sí 12%</b></span>
+    </div>
+  </div>
+
+  <section class="section" id="como-funciona">
+    <div class="section-inner">
+      <h2>Así funciona</h2>
+      <p class="section-lead">Cada mercado es una pregunta con respuesta de Sí o No. Lo demás es un mercado como cualquier otro: hay compradores, hay vendedores y el precio se mueve.</p>
+      <ol class="steps">
+        <li>
+          <span class="step-n">1</span>
+          <h3>Elige un mercado</h3>
+          <p>Cada mercado publica su pregunta, la fecha de cierre y la fuente oficial que dará el resultado, antes de que entre un solo peso. Sin letra chiquita después.</p>
+        </li>
+        <li>
+          <span class="step-n">2</span>
+          <h3>Compra Sí o No</h3>
+          <p>Un contrato cuesta entre $1 y $10 pesos, según lo que el mercado cree que va a pasar. Si compras Sí a $6.50, el mercado le da 65% de probabilidad. Si aciertas, el contrato paga $10.</p>
+        </li>
+        <li>
+          <span class="step-n">3</span>
+          <h3>Vende cuando quieras</h3>
+          <p>No tienes que esperar al final. Si el precio se mueve a tu favor, vende y toma la ganancia. Si va en contra, vende y corta la pérdida. Como con una acción.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="diferencia">
+    <div class="section-inner">
+      <h2>No somos una casa de apuestas.</h2>
+      <p class="section-lead">Somos el motor que conecta a quien compra con quien vende. Nunca tomamos el otro lado de tu posición.</p>
+      <div class="compare" role="table" aria-label="Casa de apuestas comparada con Predixa">
+        <div class="compare-row compare-head" role="row">
+          <div role="columnheader">En una casa de apuestas</div>
+          <div role="columnheader">En Predixa</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div role="cell">La casa fija el momio y se guarda su margen.</div>
+          <div role="cell">El precio lo ponen compradores y vendedores, en tiempo real.</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div role="cell">La casa apuesta contra ti.</div>
+          <div role="cell">Predixa solo empareja órdenes. No tenemos posición propia.</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div role="cell">Estás amarrado hasta el silbatazo final.</div>
+          <div role="cell">Vendes tu posición cuando quieras, mientras el mercado esté abierto.</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div role="cell">La casa gana cuando tú pierdes.</div>
+          <div role="cell">Cobramos una comisión pequeña por operación. Ganamos cuando el mercado se mueve, no cuando tú pierdes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mercados">
+    <div class="section-inner">
+      <h2>Los temas de los que ya hablas</h2>
+      <p class="section-lead">Empezamos con deportes. Iremos abriendo categorías conforme avance la regulación.</p>
+      <ul class="cats">
+        <li>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 7v9M24 32v9M7 24h9M32 24h9M14 14l6 6M28 28l6 6M34 14l-6 6M20 28l-6 6"/></svg>
+          <h3>Liga MX y Selección</h3>
+          <p>Clásicos, liguilla, eliminatorias. Precios que reaccionan al partido mientras se juega.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="12" width="30" height="28" rx="3"/><path d="M9 20h30M17 8v8M31 8v8M18 30l4 4 8-8"/></svg>
+          <h3>Elecciones y política</h3>
+          <p>Gubernaturas, decisiones de Banxico, iniciativas en el Congreso. Se resuelve con el INE o la fuente oficial.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l5.5 11.2 12.3 1.8-8.9 8.7 2.1 12.3L24 34.2 13 40l2.1-12.3-8.9-8.7 12.3-1.8z"/></svg>
+          <h3>Reality shows y premios</h3>
+          <p>Quién sale, quién gana, quién se lleva el premio. Con fuente pública y verificable.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 36l10-12 8 6 8-12 10-4"/><path d="M34 14h8v8"/></svg>
+          <h3>Tipo de cambio y economía</h3>
+          <p>Dónde cierra el dólar, si sube la tasa, cómo viene la inflación. Sin cuenta de casa de bolsa ni mínimos.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="mexico">
+    <div class="section-inner mexico">
+      <div>
+        <h2>Hecho en México, no adaptado.</h2>
+        <p class="section-lead">Las plataformas globales se construyeron para otro país y luego tradujeron los botones. Nosotros empezamos aquí.</p>
+      </div>
+      <ul class="plain">
+        <li><b>En pesos.</b> Los contratos cotizan y pagan en pesos. Nada de convertir divisas.</li>
+        <li><b>Por SPEI.</b> Depositas y retiras con transferencia bancaria. Estamos evaluando otros medios de pago locales.</li>
+        <li><b>En español.</b> Toda la app, el soporte y las reglas de cada mercado, en español.</li>
+        <li><b>Con el calendario de aquí.</b> Liga MX, elecciones mexicanas, premios y farándula nacional, el peso. No el ciclo electoral de otro país.</li>
+        <li><b>Con controles desde el día uno.</b> Verificación de identidad, protección de datos y herramientas de uso responsable.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="preguntas">
+    <div class="section-inner narrow">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Esto es una apuesta?</summary>
+        <p>No como la conoces. En una apuesta la casa te da un momio fijo y espera que pierdas. En Predixa compras y vendes contratos cuyo precio lo determina la oferta y la demanda, y puedes salirte antes de que se conozca el resultado. Estamos trabajando con asesores legales y fiscales para definir el marco bajo el que operaremos en México.</p>
+      </details>
+      <details>
+        <summary>¿Cómo gana dinero Predixa?</summary>
+        <p>Con una comisión pequeña en cada compra o venta de contratos, parecida al spread de una casa de bolsa, y una comisión al retirar tu saldo. No ganamos nada del resultado de los eventos.</p>
+      </details>
+      <details>
+        <summary>¿Quién decide el resultado?</summary>
+        <p>Nadie en Predixa. Cada mercado se publica con su fuente de resolución, por ejemplo el resultado oficial de la liga o los datos del INE, y el mercado se liquida exclusivamente con esa fuente. Si una pregunta resulta ambigua, el mercado se invalida y se devuelven los fondos.</p>
+      </details>
+      <details>
+        <summary>¿Cuándo lanzan?</summary>
+        <p>Estamos en desarrollo. Anótate en la lista de espera y te avisamos cuando abramos los primeros mercados.</p>
+      </details>
+      <details>
+        <summary>¿Puedo participar si soy menor de edad?</summary>
+        <p>No. Predixa es solo para mayores de edad y verificamos la identidad de cada usuario al registrarse.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="section section-cta" id="lista">
+    <div class="section-inner narrow">
+      <h2>Entérate primero.</h2>
+      <p class="section-lead">Déjanos tu correo y te avisamos cuando abran los primeros mercados. Nada de spam.</p>
+      <!--
+        Para recibir los correos, crea un formulario gratuito en https://formspree.io
+        y reemplaza TU_ID_AQUI con el ID que te den. Mientras tanto el botón solo
+        muestra el mensaje de gracias.
+      -->
+      <form class="waitlist" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+        <label class="sr-only" for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" placeholder="tu@correo.com" required autocomplete="email">
+        <button class="btn" type="submit">Anotarme</button>
+      </form>
+      <p class="form-ok" hidden>Listo. Te escribimos cuando haya novedades.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg class="wordmark-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6"/><path d="M9 23 L14 15 L18 19 L23 9"/></svg>
+      Predixa México
+    </div>
+    <p class="footer-legal">Predixa es un producto en desarrollo y todavía no ofrece mercados con dinero real. Los mercados que se muestran en este sitio son ejemplos ilustrativos. Nada aquí es asesoría financiera, legal o fiscal, ni una oferta de inversión. Solo para mayores de edad. Participa con responsabilidad.</p>
+    <p class="footer-contact"><a href="mailto:hola@predixa.mx">hola@predixa.mx</a></p>
+  </div>
+</footer>
+
+<script>
+  // Un solo momento de movimiento: el precio del mercado de ejemplo
+  // "respira" un poco al cargar, para que se sienta vivo.
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    var si = document.getElementById('px-si');
+    var no = document.getElementById('px-no');
+    var prob = document.getElementById('prob');
+    var seq = [64, 66, 65, 67, 65];
+    var i = 0;
+    var t = setInterval(function () {
+      var p = seq[i++];
+      if (p === undefined) { clearInterval(t); return; }
+      si.textContent = '$' + (p / 10).toFixed(2);
+      no.textContent = '$' + ((100 - p) / 10).toFixed(2);
+      prob.textContent = p + '%';
+    }, 900);
+  })();
+
+  // Formulario: si todavía no hay ID de Formspree, solo agradece.
+  (function () {
+    var form = document.querySelector('.waitlist');
+    var ok = document.querySelector('.form-ok');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      if (form.action.indexOf('TU_ID_AQUI') !== -1) {
+        e.preventDefault();
+        form.hidden = true;
+        ok.hidden = false;
+      }
+    });
+  })();
+</script>
+</body>
+</html>
