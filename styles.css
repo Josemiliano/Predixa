@@ -98,8 +98,8 @@ a { color: inherit; }
 .wordmark {
   display: inline-flex;
   align-items: baseline;
-  font-weight: 800;
-  font-size: 1.75rem;
+  font-weight: 900;
+  font-size: 1.9rem;
   font-variation-settings: "wdth" 100;
   letter-spacing: -0.01em;
   line-height: 1;
@@ -108,8 +108,8 @@ a { color: inherit; }
 }
 /* La "x" del logo: flechas roja y verde cruzadas, a la altura de las minúsculas */
 .wordmark-x {
-  width: 0.5em;
-  height: 0.62em;
+  width: 0.56em;
+  height: 0.7em;
   margin: 0 0.02em;
   flex: none;
 }
