@@ -113,11 +113,6 @@ a { color: inherit; }
   margin: 0 0.02em;
   flex: none;
 }
-.wordmark-mark {
-  width: 24px;
-  height: 28px;
-  flex: none;
-}
 .topnav { display: flex; gap: 28px; }
 .topnav a {
   text-decoration: none;
@@ -463,10 +458,22 @@ a { color: inherit; }
   border-radius: 999px;
   background: #fff;
 }
+.waitlist .form-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+.waitlist button:disabled { opacity: .65; cursor: wait; }
 .form-ok {
   margin-top: 28px;
   font-weight: 600;
   color: var(--verde-oscuro);
+}
+.form-error {
+  margin-top: 18px;
+  font-weight: 600;
+  color: #9b2c2c;
 }
 
 /* Pie */
@@ -485,6 +492,13 @@ a { color: inherit; }
   font-weight: 700;
   color: var(--ink);
   margin-bottom: 14px;
+}
+.footer-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1;
 }
 .footer-legal { max-width: 60em; }
 .footer-contact { margin-top: 14px; }

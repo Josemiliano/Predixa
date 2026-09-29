@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Predixa — El mercado de predicciones hecho para México</title>
   <meta name="description" content="Compra y vende posiciones sobre lo que va a pasar en México: fútbol, elecciones, entretenimiento y el peso. El precio lo pone la gente, no una casa de apuestas.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A3D2A'/%3E%3Cpath d='M9 23 L14 15 L18 19 L23 9' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="logo-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
 <header class="topbar">
   <a class="wordmark" href="#inicio" aria-label="Predixa, inicio">
-    <svg class="wordmark-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6"/><path d="M9 23 L14 15 L18 19 L23 9"/></svg>
-    Predixa
+    predi<img class="wordmark-x" src="logo-mark.svg" alt="">a
   </a>
   <nav class="topnav" aria-label="Principal">
     <a href="#como-funciona">Cómo funciona</a>
@@ -234,17 +233,15 @@
     <div class="section-inner narrow">
       <h2>Entérate primero.</h2>
       <p class="section-lead">Déjanos tu correo y te avisamos cuando abran los primeros mercados. Nada de spam.</p>
-      <!--
-        Para recibir los correos, crea un formulario gratuito en https://formspree.io
-        y reemplaza TU_ID_AQUI con el ID que te den. Mientras tanto el botón solo
-        muestra el mensaje de gracias.
-      -->
-      <form class="waitlist" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+      <form class="waitlist" action="https://script.google.com/macros/s/AKfycbxcR992Kkhi8IPtoQ3h1sPtcyCYRJ_5a4kDKTl8NQ96iCtcfn8W3eDisKRy4ASTFL5XbQ/exec" method="POST" target="waitlist-response">
         <label class="sr-only" for="email">Correo electrónico</label>
         <input id="email" name="email" type="email" placeholder="tu@correo.com" required autocomplete="email">
+        <input class="form-trap" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn" type="submit">Anotarme</button>
       </form>
+      <iframe name="waitlist-response" title="Respuesta del formulario" hidden></iframe>
       <p class="form-ok" hidden>Listo. Te escribimos cuando haya novedades.</p>
+      <p class="form-error" role="alert" hidden>No pudimos registrarte. Intenta de nuevo.</p>
     </div>
   </section>
 
@@ -253,8 +250,7 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <svg class="wordmark-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6"/><path d="M9 23 L14 15 L18 19 L23 9"/></svg>
-      Predixa México
+      <span class="footer-wordmark">predi<img class="wordmark-x" src="logo-mark.svg" alt="">a</span> México
     </div>
     <p class="footer-legal">Predixa es un producto en desarrollo y todavía no ofrece mercados con dinero real. Los mercados que se muestran en este sitio son ejemplos ilustrativos. Nada aquí es asesoría financiera, legal o fiscal, ni una oferta de inversión. Solo para mayores de edad. Participa con responsabilidad.</p>
     <p class="footer-contact"><a href="mailto:soporte@predixa.mx">soporte@predixa.mx</a></p>
@@ -281,16 +277,57 @@
     }, 900);
   })();
 
-  // Formulario: si todavía no hay ID de Formspree, solo agradece.
+  // Envía la lista de espera al Web App de Google Apps Script.
   (function () {
     var form = document.querySelector('.waitlist');
     var ok = document.querySelector('.form-ok');
+    var error = document.querySelector('.form-error');
+    var button = form && form.querySelector('button');
+    var frame = document.querySelector('iframe[name="waitlist-response"]');
+    var submitted = false;
     if (!form) return;
+
     form.addEventListener('submit', function (e) {
-      if (form.action.indexOf('TU_ID_AQUI') !== -1) {
+      ok.hidden = true;
+      error.hidden = true;
+
+      if (form.getAttribute('action').indexOf('TU_URL_DE_APPS_SCRIPT') !== -1) {
         e.preventDefault();
+        error.textContent = 'Falta conectar el formulario con Google Apps Script.';
+        error.hidden = false;
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Enviando…';
+      submitted = true;
+    });
+
+    // Google envuelve la respuesta en un iframe propio. Este evento también
+    // permite confirmar el envío con implementaciones anteriores del script.
+    frame.addEventListener('load', function () {
+      if (!submitted) return;
+      submitted = false;
+      button.disabled = false;
+      button.textContent = 'Anotarme';
+      form.hidden = true;
+      ok.hidden = false;
+    });
+
+    window.addEventListener('message', function (event) {
+      if (!event.origin.endsWith('.googleusercontent.com')) return;
+      if (!event.data || event.data.type !== 'predixa-waitlist') return;
+
+      button.disabled = false;
+      button.textContent = 'Anotarme';
+      submitted = false;
+
+      if (event.data.ok) {
         form.hidden = true;
         ok.hidden = false;
+      } else {
+        error.textContent = event.data.message || 'No pudimos registrarte. Intenta de nuevo.';
+        error.hidden = false;
       }
     });
   })();
