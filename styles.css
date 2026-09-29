@@ -207,11 +207,62 @@ a { color: inherit; }
   font-variant-numeric: tabular-nums;
 }
 .market-prob span { color: var(--ink-2); font-size: .95rem; }
+.market-chart {
+  position: relative;
+  margin-top: 10px;
+  padding-top: 28px;
+  overflow: hidden;
+}
 .spark {
   width: 100%;
   height: 80px;
-  margin-top: 10px;
   display: block;
+}
+.spark-tip { fill: var(--verde); }
+.market-activity {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.market-purchase {
+  position: absolute;
+  top: 32px;
+  padding: 4px 9px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: purchase-float 2.8s ease-out forwards;
+}
+.purchase-si { left: 4%; color: var(--verde-oscuro); background: #edf7f0; border-color: #c6e2ce; }
+.purchase-no { right: 4%; color: #9b2424; background: #fff0f0; border-color: #f0caca; }
+@keyframes purchase-float {
+  0% { opacity: 0; transform: translateY(24px); }
+  15% { opacity: 1; }
+  65% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-30px); }
+}
+.market-demo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  color: var(--ink-2);
+  font-size: .7rem;
+}
+.market-demo button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 4px;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .market-purchase { animation: none; }
 }
 .spark-line {
   fill: none;

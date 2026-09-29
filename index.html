@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -47,6 +47,7 @@
         <strong id="prob">65%</strong>
         <span>de probabilidad según el mercado</span>
       </div>
+      <div class="market-chart">
       <svg class="spark" viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
@@ -56,7 +57,11 @@
         </defs>
         <path class="spark-fill" d="M0,62 L20,58 L40,64 L60,55 L80,57 L100,48 L120,52 L140,44 L160,47 L180,38 L200,42 L220,35 L240,37 L260,31 L280,34 L300,28 L320,30 L320,90 L0,90 Z" fill="url(#fill)"/>
         <path class="spark-line" d="M0,62 L20,58 L40,64 L60,55 L80,57 L100,48 L120,52 L140,44 L160,47 L180,38 L200,42 L220,35 L240,37 L260,31 L280,34 L300,28 L320,30"/>
+        <circle class="spark-tip" cx="320" cy="30" r="3"/>
       </svg>
+      <div class="market-activity" aria-hidden="true"></div>
+      </div>
+      <div class="market-demo"><span>Actividad simulada</span><button type="button" id="market-pause" aria-pressed="false">Pausar</button></div>
       <div class="market-buttons">
         <button type="button" class="side side-si" aria-label="Comprar Sí a seis pesos con cincuenta centavos">
           <span>Sí</span><b id="px-si">$6.50</b>
@@ -255,23 +260,100 @@
 </footer>
 
 <script>
-  // Un solo momento de movimiento: el precio del mercado de ejemplo
-  // "respira" un poco al cargar, para que se sienta vivo.
+  // Una sola cotización alimenta el gráfico, la probabilidad y ambos precios.
   (function () {
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
+    var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     var si = document.getElementById('px-si');
     var no = document.getElementById('px-no');
     var prob = document.getElementById('prob');
-    var seq = [64, 66, 65, 67, 65];
-    var i = 0;
-    var t = setInterval(function () {
-      var p = seq[i++];
-      if (p === undefined) { clearInterval(t); return; }
+    var line = document.querySelector('.spark-line');
+    var fill = document.querySelector('.spark-fill');
+    var tip = document.querySelector('.spark-tip');
+    var activity = document.querySelector('.market-activity');
+    var pause = document.getElementById('market-pause');
+    var names = ['Ana', 'Diego', 'Sofía', 'Luis', 'Mariana', 'Pablo', 'Valeria', 'Carlos'];
+    var history = [49, 51, 48, 52.5, 51.5, 56, 54, 58, 56.5, 61, 59, 62.5, 61.5, 64.5, 63, 66, 65];
+    var current = 65;
+    var start = current;
+    var target = current;
+    var elapsed = 0;
+    var duration = 0;
+    var lastTime = null;
+    var frame = null;
+    var paused = false;
+    var trades = 0;
+
+    function y(value) { return 90 - (value - 35) * 2; }
+
+    function render(progress) {
+      var p = Math.round(current * 10) / 10;
+      prob.textContent = p.toFixed(1) + '%';
       si.textContent = '$' + (p / 10).toFixed(2);
       no.textContent = '$' + ((100 - p) / 10).toFixed(2);
-      prob.textContent = p + '%';
-    }, 900);
+      si.parentElement.setAttribute('aria-label', 'Comprar Sí a ' + si.textContent + ' pesos (simulación)');
+      no.parentElement.setAttribute('aria-label', 'Comprar No a ' + no.textContent + ' pesos (simulación)');
+      // El historial se desplaza mientras el último punto sigue la cotización.
+      var path = history.map(function (value, index) {
+        return (index ? 'L' : 'M') + ((index - progress) * 20).toFixed(2) + ',' + y(value).toFixed(2);
+      }).join(' ') + ' L320,' + y(p).toFixed(2);
+      line.setAttribute('d', path);
+      fill.setAttribute('d', path + ' L320,90 L0,90 Z');
+      tip.setAttribute('cy', y(p).toFixed(2));
+    }
+
+    function purchase(up) {
+      var notice = document.createElement('span');
+      notice.className = 'market-purchase ' + (up ? 'purchase-si' : 'purchase-no');
+      notice.textContent = names[Math.floor(Math.random() * names.length)] + ' compró ' + (up ? 'Sí' : 'No');
+      activity.appendChild(notice);
+      // Límite y limpieza también cuando las animaciones están desactivadas.
+      while (activity.children.length > 2) activity.firstElementChild.remove();
+      setTimeout(function () { notice.remove(); }, 2800);
+    }
+
+    function nextTrade() {
+      start = current;
+      // Pequeños movimientos aleatorios, con una tendencia suave al centro.
+      var up = Math.random() < 0.5 + (65 - current) * 0.018;
+      var change = (0.5 + Math.random() * 1.8) * (up ? 1 : -1);
+      target = Math.max(43, Math.min(76, Math.round((current + change) * 10) / 10));
+      duration = 1100 + Math.random() * 1100;
+      elapsed = 0;
+      if (trades++ % 2 === 0) purchase(target > start);
+    }
+
+    function tick(time) {
+      if (lastTime !== null) elapsed += Math.min(time - lastTime, 100);
+      lastTime = time;
+      var progress = Math.min(elapsed / duration, 1);
+      current = start + (target - start) * progress;
+      if (!motion.matches || progress === 1) render(progress);
+      if (progress === 1) {
+        history.push(target);
+        history.shift();
+        nextTrade();
+      }
+      frame = requestAnimationFrame(tick);
+    }
+
+    function syncPlayback() {
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+      lastTime = null;
+      activity.replaceChildren();
+      if (!paused && !document.hidden) frame = requestAnimationFrame(tick);
+    }
+
+    pause.addEventListener('click', function () {
+      paused = !paused;
+      pause.textContent = paused ? 'Reanudar' : 'Pausar';
+      pause.setAttribute('aria-pressed', String(paused));
+      syncPlayback();
+    });
+    document.addEventListener('visibilitychange', syncPlayback);
+    render(0);
+    syncPlayback();
+    nextTrade();
   })();
 
   // Envía la lista de espera al Web App de Google Apps Script.
