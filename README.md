@@ -24,9 +24,4 @@ Si cambias `Code.gs` después, crea una versión nueva desde **Administrar imple
 ## Pendientes antes de lanzar
 
 - **Correo de contacto:** `soporte@predixa.mx` (se reenvía a predixamx@gmail.com).
-- **Precios de ejemplo:** el sitio usa contratos de $1 a $10 pesos que pagan $10. Ver nota en el chat.
-
-## Editar
-
-Todo el texto vive en `index.html`; los colores y tipografía están al inicio de `styles.css` en `:root`.
-La tipografía (Archivo) se carga de Google Fonts; si prefieren no depender de eso, descárguenla y cambien el `<link>`.
+- **Precios de ejemplo:** el sitio usa contratos de $1 a $10 pesos que pagan $10.
