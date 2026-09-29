@@ -242,8 +242,8 @@ a { color: inherit; }
   font-size: 1.25rem;
   font-variant-numeric: tabular-nums;
 }
-.side-si { background: var(--verde-suave); color: var(--verde-oscuro); }
-.side-no { background: var(--rosa-suave); color: var(--rosa); }
+.side-si { background: var(--sube); color: #fff; }
+.side-no { background: var(--baja); color: #fff; }
 .market-meta {
   margin: 18px 0 0;
   padding-top: 14px;
@@ -275,8 +275,8 @@ a { color: inherit; }
 .ticker-copy { display: inline-block; }
 .ticker-track span { padding: 0 16px; }
 .ticker-track b { font-weight: 700; margin-left: 5px; }
-.ticker-track .si { color: var(--verde); }
-.ticker-track .no { color: var(--rosa); }
+.ticker-track .si { color: var(--sube); }
+.ticker-track .no { color: var(--baja); }
 @keyframes ticker {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
